@@ -11,10 +11,10 @@
 - 穷举普通卡池全部 1000 个整数随机值：角色 100、装备 300、材料 600。
 - 静态资产检查通过：九个 SO 内嵌配置与 JSON 一致，所有已提交的 Unity GUID 引用可解析，程序集定义引用可解析。
 
-执行命令：
+复现命令（安装 .NET 8 SDK 并加入 PATH 后）：
 
 ```powershell
-.\Tools\verify.ps1 -Dotnet 'C:/Users/10657/Documents/Codex/2026-09-07/jie/work/dotnet/dotnet.exe'
+.\Tools\verify.ps1
 ```
 
 末行结果：

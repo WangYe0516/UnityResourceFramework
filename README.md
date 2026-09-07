@@ -1,6 +1,6 @@
 # Unity 多系统数据驱动框架
 
-工程包含九类配置、完整 CSV/JSON 导入工具、ScriptableObject 资产、角色构建、抽卡、定时合成、数据热更新及 Console 示例场景。所有源文件和真实提交历史保存在本地 Git 仓库。
+工程包含九类配置、完整 CSV/JSON 导入工具、ScriptableObject 资产、角色构建、抽卡、定时合成、数据热更新及 Console 示例场景。所有源文件和真实提交历史保存在 [WangYe0516/UnityResourceFramework](https://github.com/WangYe0516/UnityResourceFramework)。
 
 **当前验证状态：47 项命令行检查通过，实际编译了 Core、Features 和 CSV 导入器的 C# 源码，语言限制为 C# 7.3。当前机器未找到 Unity 编辑器，因此 Unity 资产导入、Play Mode、真实 Editor 批处理与 Player 构建尚未执行。静态生成的初始场景和 SO 已检查 GUID 引用与配置内容，不能等同于 Unity 实机验收。**
 
@@ -39,13 +39,13 @@ SO → Runtime，加载 9 类模块、12 条资源。
 dotnet run --project .\Tools\Checks\Framework.Checks.csproj -- .
 ```
 
-也可以运行脚本并指定 SDK：
+在 .NET 8 SDK 已加入 PATH 的环境中，也可以运行脚本：
 
 ```powershell
-.\Tools\verify.ps1 -Dotnet 'C:/Users/10657/Documents/Codex/2026-09-07/jie/work/dotnet/dotnet.exe'
+.\Tools\verify.ps1
 ```
 
-后一条路径是交付机器本次使用的隔离 SDK；复制到其他机器后改用已安装 SDK 路径。检查失败时进程非零退出，成功输出 `RESULT 47 checks passed`。标准检查不会修改配置或资产。
+如果 SDK 未加入 PATH，可用 `-Dotnet` 参数指定实际的 dotnet 可执行文件路径。检查失败时进程非零退出，成功输出 `RESULT 47 checks passed`。标准检查不会修改配置或资产。
 
 ### 一条命令做真实 Unity 验收
 
@@ -225,9 +225,14 @@ git log --oneline --reverse
 git status --short
 ```
 
-历史按实际工作形成：工程初始化、配置契约与样例、事务业务及测试、Unity 接入及资产、README 与验收。未创建虚构提交时间，也未连接或推送任何远程仓库。
+历史按实际工作形成：工程初始化、配置契约与样例、事务业务及测试、Unity 接入及资产、README 与验收，以及公开交付说明。没有改写原有提交历史。
 
-本地仓库和提交不需要远程地址。若需交到 GitHub/GitLab/Gitee，需要接收仓库 URL 和当前环境可用的写权限；确认目标后才执行远程推送。
+公开仓库地址：https://github.com/WangYe0516/UnityResourceFramework 。默认分支为 `main`。克隆项目：
+
+```powershell
+git clone https://github.com/WangYe0516/UnityResourceFramework.git
+cd UnityResourceFramework
+```
 
 ## 官方参考
 
