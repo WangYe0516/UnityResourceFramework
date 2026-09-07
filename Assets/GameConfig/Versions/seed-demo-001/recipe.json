@@ -1,0 +1,35 @@
+{
+  "module": "recipe",
+  "schemaVersion": 1,
+  "contentVersion": "demo-001",
+  "items": [
+    {
+      "id": "recipe.healing_potion",
+      "name": "治疗药剂配方",
+      "description": "",
+      "iconKey": "",
+      "tags": [],
+      "extensions": [],
+      "inputs": [
+        {
+          "resourceId": "material.herb",
+          "amount": 3
+        },
+        {
+          "resourceId": "material.water",
+          "amount": 1
+        }
+      ],
+      "outputs": [
+        {
+          "resourceId": "material.healing_potion",
+          "amount": 1,
+          "probabilityPermille": 1000,
+          "quality": "normal"
+        }
+      ],
+      "durationSeconds": 30,
+      "actionPointCost": 2
+    }
+  ]
+}

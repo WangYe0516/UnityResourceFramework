@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb728345867150118c5658f1e5cf6e3f, type: 3}
+  m_Name: talent_board
+  m_EditorClassIdentifier: 
+  module: talent_board
+  schemaVersion: 1
+  contentVersion: demo-001
+  canonicalJson: "{\"module\":\"talent_board\",\"schemaVersion\":1,\"contentVersion\":\"demo-001\",\"items\":[{\"id\":\"talent_board.apollo\",\"name\":\"\u963f\u6ce2\u7f57\u5929\u8d4b\u677f\",\"description\":\"\",\"iconKey\":\"\",\"tags\":[],\"extensions\":[],\"ownerCharacterId\":\"character.apollo\",\"nodes\":[{\"nodeId\":\"node_01\",\"prerequisiteNodeIds\":[],\"unlockCosts\":[{\"resourceId\":\"currency.gold\",\"amount\":10}],\"grantedAbilityIds\":[\"ability.sun_arrow\"]}]}]}"

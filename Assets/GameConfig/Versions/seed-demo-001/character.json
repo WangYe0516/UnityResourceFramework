@@ -1,0 +1,35 @@
+{
+  "module": "character",
+  "schemaVersion": 1,
+  "contentVersion": "demo-001",
+  "items": [
+    {
+      "id": "character.apollo",
+      "name": "阿波罗",
+      "description": "",
+      "iconKey": "",
+      "tags": [],
+      "extensions": [],
+      "baseStats": [
+        {
+          "statId": "hp",
+          "value": 100
+        },
+        {
+          "statId": "attack",
+          "value": 20
+        }
+      ],
+      "defaultEquipmentIds": [
+        "equipment.sun_bow"
+      ],
+      "defaultAbilityIds": [
+        "ability.sun_arrow"
+      ],
+      "talentBoardId": "talent_board.apollo",
+      "defaultPerfumeIds": [
+        "perfume.sun_blessing"
+      ]
+    }
+  ]
+}

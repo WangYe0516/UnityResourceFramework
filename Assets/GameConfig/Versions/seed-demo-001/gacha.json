@@ -1,0 +1,52 @@
+{
+  "module": "gacha",
+  "schemaVersion": 1,
+  "contentVersion": "demo-001",
+  "items": [
+    {
+      "id": "gacha.standard",
+      "name": "常驻池",
+      "description": "",
+      "iconKey": "",
+      "tags": [],
+      "extensions": [],
+      "drawCosts": [
+        {
+          "resourceId": "currency.ticket",
+          "amount": 1
+        }
+      ],
+      "entries": [
+        {
+          "entryId": "entry_01",
+          "resourceId": "character.apollo",
+          "amount": 1,
+          "weight": 100,
+          "isPityTarget": true
+        },
+        {
+          "entryId": "entry_02",
+          "resourceId": "equipment.sun_bow",
+          "amount": 1,
+          "weight": 300,
+          "isPityTarget": false
+        },
+        {
+          "entryId": "entry_03",
+          "resourceId": "material.herb",
+          "amount": 5,
+          "weight": 600,
+          "isPityTarget": false
+        }
+      ],
+      "startsAtUtc": null,
+      "endsAtUtc": null,
+      "pity": {
+        "ruleType": "hard_pity",
+        "guaranteeAt": 10,
+        "counterKey": "gacha.standard",
+        "resetOnTarget": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb728345867150118c5658f1e5cf6e3f, type: 3}
+  m_Name: currency
+  m_EditorClassIdentifier: 
+  module: currency
+  schemaVersion: 1
+  contentVersion: demo-001
+  canonicalJson: "{\"module\":\"currency\",\"schemaVersion\":1,\"contentVersion\":\"demo-001\",\"items\":[{\"id\":\"currency.gold\",\"name\":\"\u91d1\u5e01\",\"description\":\"\",\"iconKey\":\"\",\"tags\":[],\"extensions\":[],\"acquisitionMethods\":[\"quest\",\"drop\"],\"purchasable\":false,\"purchaseCosts\":[]},{\"id\":\"currency.ticket\",\"name\":\"\u62bd\u5361\u5238\",\"description\":\"\",\"iconKey\":\"\",\"tags\":[],\"extensions\":[],\"acquisitionMethods\":[\"quest\",\"purchase\"],\"purchasable\":true,\"purchaseCosts\":[{\"resourceId\":\"currency.gold\",\"amount\":100}]}]}"

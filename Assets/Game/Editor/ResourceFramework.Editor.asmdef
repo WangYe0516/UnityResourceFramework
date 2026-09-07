@@ -1,0 +1,7 @@
+{
+  "name": "ResourceFramework.Editor",
+  "rootNamespace": "ResourceFramework",
+  "references": ["ResourceFramework.Core", "ResourceFramework.Features", "ResourceFramework.Unity"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}

@@ -1,0 +1,4 @@
+<linker>
+  <!-- DTO fields and constructors are used by the registered JSON codec. -->
+  <assembly fullname="ResourceFramework.Core" preserve="all" />
+</linker>

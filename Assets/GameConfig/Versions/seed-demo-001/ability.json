@@ -1,0 +1,30 @@
+{
+  "module": "ability",
+  "schemaVersion": 1,
+  "contentVersion": "demo-001",
+  "items": [
+    {
+      "id": "ability.sun_arrow",
+      "name": "日箭",
+      "description": "",
+      "iconKey": "",
+      "tags": [],
+      "extensions": [],
+      "abilityType": "active",
+      "cooldownSeconds": 5,
+      "costs": [],
+      "effects": [
+        {
+          "effectType": "damage_descriptor",
+          "parameters": [
+            {
+              "key": "coefficient",
+              "valueType": "float",
+              "value": "1.5"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

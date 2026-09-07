@@ -1,0 +1,40 @@
+{
+  "module": "currency",
+  "schemaVersion": 1,
+  "contentVersion": "demo-001",
+  "items": [
+    {
+      "id": "currency.gold",
+      "name": "金币",
+      "description": "",
+      "iconKey": "",
+      "tags": [],
+      "extensions": [],
+      "acquisitionMethods": [
+        "quest",
+        "drop"
+      ],
+      "purchasable": false,
+      "purchaseCosts": []
+    },
+    {
+      "id": "currency.ticket",
+      "name": "抽卡券",
+      "description": "",
+      "iconKey": "",
+      "tags": [],
+      "extensions": [],
+      "acquisitionMethods": [
+        "quest",
+        "purchase"
+      ],
+      "purchasable": true,
+      "purchaseCosts": [
+        {
+          "resourceId": "currency.gold",
+          "amount": 100
+        }
+      ]
+    }
+  ]
+}

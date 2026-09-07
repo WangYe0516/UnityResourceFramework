@@ -1,0 +1,28 @@
+{
+  "module": "perfume",
+  "schemaVersion": 1,
+  "contentVersion": "demo-001",
+  "items": [
+    {
+      "id": "perfume.sun_blessing",
+      "name": "日光香氛",
+      "description": "",
+      "iconKey": "",
+      "tags": [],
+      "extensions": [],
+      "allowedCharacterIds": [
+        "character.apollo"
+      ],
+      "stackRule": "unique",
+      "modifiers": [
+        {
+          "targetType": "ability",
+          "targetId": "ability.sun_arrow",
+          "property": "cooldownSeconds",
+          "operation": "multiply",
+          "value": 0.9
+        }
+      ]
+    }
+  ]
+}

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ResourceFramework;
 
@@ -53,7 +55,7 @@ internal static class Program
         {
             root = args.Length > 0 ? Path.GetFullPath(args[0]) : Directory.GetCurrentDirectory();
             json = File.ReadAllText(Path.Combine(root, "ConfigSource", "collection.json"));
-            RunCoreTests(); RunCsvTests(); RunFeatureTests();
+            RunCoreTests(); RunCsvTests(); RunFeatureTests(); RunAssetChecks();
             if (args.Contains("--export-schemas")) ExportSchemas();
             Console.WriteLine("RESULT " + passed + " checks passed; real C# sources compiled with C# 7.3.");
             Console.WriteLine("LIMIT: Unity asset import, scene execution and player build require a Unity Editor run.");
@@ -227,5 +229,33 @@ internal static class Program
     {
         string folder=Path.Combine(root,"ConfigSource","Schemas"); Directory.CreateDirectory(folder);
         foreach (string module in ConfigCodec.ModuleNames) File.WriteAllText(Path.Combine(folder,module+".schema.json"),ConfigCodec.ExportRowSchema(module).ToString()+Environment.NewLine);
+    }
+    private static void RunAssetChecks()
+    {
+        string assets=Path.Combine(root,"Assets");
+        Test("Unity metadata exists and all serialized GUIDs resolve", () => {
+            var files=Directory.GetFiles(assets,"*",SearchOption.AllDirectories).Where(x=>!x.EndsWith(".meta",StringComparison.Ordinal)).ToArray();
+            foreach(string path in files.Concat(Directory.GetDirectories(assets,"*",SearchOption.AllDirectories))) Assert(File.Exists(path+".meta"),"Missing meta: "+path);
+            var guids=new HashSet<string>();
+            foreach(string meta in Directory.GetFiles(assets,"*.meta",SearchOption.AllDirectories)) {
+                var match=Regex.Match(File.ReadAllText(meta),@"(?m)^guid: ([a-f0-9]{32})"); Assert(match.Success && guids.Add(match.Groups[1].Value),"Duplicate/invalid GUID: "+meta);
+            }
+            foreach(string path in files.Where(x=>x.EndsWith(".asset",StringComparison.Ordinal)||x.EndsWith(".unity",StringComparison.Ordinal)))
+                foreach(Match match in Regex.Matches(File.ReadAllText(path),@"guid: ([a-f0-9]{32})")) Assert(guids.Contains(match.Groups[1].Value),"Unresolved GUID: "+path);
+        });
+        Test("nine committed SO payloads match source JSON", () => {
+            var expected=ConfigCodec.ParseCollection(json); var modules=new List<ModuleEnvelope>();
+            foreach(string path in Directory.GetFiles(Path.Combine(assets,"GameConfig","Versions","seed-demo-001"),"*.asset")) {
+                var match=Regex.Match(File.ReadAllText(path),@"(?m)^  canonicalJson: (.+)$"); if(!match.Success) continue;
+                var module=ConfigCodec.ParseModule(JsonConvert.DeserializeObject<string>(match.Groups[1].Value)); modules.Add(module);
+                Assert(JToken.DeepEquals(module.items,expected.modules.Single(x=>x.module==module.module).items),"SO/source mismatch: "+module.module);
+            }
+            Assert(modules.Count==9 && new ResourceSnapshot(modules).Count==12);
+        });
+        Test("assembly definition references resolve", () => {
+            var definitions=Directory.GetFiles(assets,"*.asmdef",SearchOption.AllDirectories).Select(x=>JObject.Parse(File.ReadAllText(x))).ToArray();
+            var names=new HashSet<string>(definitions.Select(x=>(string)x["name"]));
+            foreach(var definition in definitions) foreach(string name in definition["references"].Values<string>()) Assert(names.Contains(name),"Unknown assembly definition: "+name);
+        });
     }
 }
