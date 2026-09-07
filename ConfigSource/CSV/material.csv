@@ -1,0 +1,4 @@
+id,name,description,iconKey,tags,extensions,rarity,sources
+material.herb,草药,,,[],[],1,"[{""sourceType"":""plant"",""sourceId"":""herb_patch""}]"
+material.water,水,,,[],[],1,"[{""sourceType"":""purchase"",""sourceId"":""water_shop""}]"
+material.healing_potion,治疗药剂,,,[],[],2,"[{""sourceType"":""craft"",""sourceId"":""recipe.healing_potion""}]"

@@ -1,0 +1,119 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "inputs",
+    "outputs",
+    "durationSeconds",
+    "actionPointCost",
+    "id",
+    "name"
+  ],
+  "properties": {
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "amount"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "amount",
+          "probabilityPermille",
+          "quality"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "probabilityPermille": {
+            "type": "integer",
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "quality": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "durationSeconds": {
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "actionPointCost": {
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "iconKey": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "extensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "valueType",
+          "value"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "valueType": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "recipe"
+}

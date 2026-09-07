@@ -1,0 +1,3 @@
+id,name,description,iconKey,tags,extensions,acquisitionMethods,purchasable,purchaseCosts
+currency.gold,金币,,,[],[],"[""quest"",""drop""]",false,[]
+currency.ticket,抽卡券,,,[],[],"[""quest"",""purchase""]",true,"[{""resourceId"":""currency.gold"",""amount"":100}]"

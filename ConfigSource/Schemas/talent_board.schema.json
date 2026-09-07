@@ -1,0 +1,109 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ownerCharacterId",
+    "nodes",
+    "id",
+    "name"
+  ],
+  "properties": {
+    "ownerCharacterId": {
+      "type": "string"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "nodeId",
+          "prerequisiteNodeIds",
+          "unlockCosts",
+          "grantedAbilityIds"
+        ],
+        "properties": {
+          "nodeId": {
+            "type": "string"
+          },
+          "prerequisiteNodeIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "unlockCosts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "resourceId",
+                "amount"
+              ],
+              "properties": {
+                "resourceId": {
+                  "type": "string"
+                },
+                "amount": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              }
+            }
+          },
+          "grantedAbilityIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "iconKey": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "extensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "valueType",
+          "value"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "valueType": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "talent_board"
+}

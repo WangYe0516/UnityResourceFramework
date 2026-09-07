@@ -1,0 +1,2 @@
+id,name,description,iconKey,tags,extensions,slot,rarity,allowedCharacterIds,grantedAbilityIds,statModifiers
+equipment.sun_bow,日弓,,,[],[],weapon,3,"[""character.apollo""]","[""ability.sun_arrow""]","[{""statId"":""attack"",""operation"":""add"",""value"":5}]"

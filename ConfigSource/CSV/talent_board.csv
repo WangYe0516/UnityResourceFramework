@@ -1,0 +1,2 @@
+id,name,description,iconKey,tags,extensions,ownerCharacterId,nodes
+talent_board.apollo,阿波罗天赋板,,,[],[],character.apollo,"[{""nodeId"":""node_01"",""prerequisiteNodeIds"":[],""unlockCosts"":[{""resourceId"":""currency.gold"",""amount"":10}],""grantedAbilityIds"":[""ability.sun_arrow""]}]"

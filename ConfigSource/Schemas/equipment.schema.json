@@ -1,0 +1,103 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slot",
+    "rarity",
+    "allowedCharacterIds",
+    "grantedAbilityIds",
+    "statModifiers",
+    "id",
+    "name"
+  ],
+  "properties": {
+    "slot": {
+      "type": "string"
+    },
+    "rarity": {
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "allowedCharacterIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "grantedAbilityIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "statModifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "statId",
+          "operation",
+          "value"
+        ],
+        "properties": {
+          "statId": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "minimum": -3.4028235E+38,
+            "maximum": 3.4028235E+38
+          }
+        }
+      }
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "iconKey": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "extensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "valueType",
+          "value"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "valueType": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "equipment"
+}

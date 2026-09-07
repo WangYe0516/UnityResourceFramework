@@ -1,0 +1,2 @@
+id,name,description,iconKey,tags,extensions,abilityType,cooldownSeconds,costs,effects
+ability.sun_arrow,日箭,,,[],[],active,5,[],"[{""effectType"":""damage_descriptor"",""parameters"":[{""key"":""coefficient"",""valueType"":""float"",""value"":""1.5""}]}]"

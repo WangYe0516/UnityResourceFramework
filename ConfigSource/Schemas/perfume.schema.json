@@ -1,0 +1,98 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "allowedCharacterIds",
+    "modifiers",
+    "stackRule",
+    "id",
+    "name"
+  ],
+  "properties": {
+    "allowedCharacterIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "targetType",
+          "targetId",
+          "property",
+          "operation",
+          "value"
+        ],
+        "properties": {
+          "targetType": {
+            "type": "string"
+          },
+          "targetId": {
+            "type": "string"
+          },
+          "property": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "minimum": -3.4028235E+38,
+            "maximum": 3.4028235E+38
+          }
+        }
+      }
+    },
+    "stackRule": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "iconKey": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "extensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "valueType",
+          "value"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "valueType": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "perfume"
+}

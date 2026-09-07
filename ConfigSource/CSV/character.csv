@@ -1,0 +1,2 @@
+id,name,description,iconKey,tags,extensions,baseStats,defaultEquipmentIds,defaultAbilityIds,talentBoardId,defaultPerfumeIds
+character.apollo,阿波罗,,,[],[],"[{""statId"":""hp"",""value"":100},{""statId"":""attack"",""value"":20}]","[""equipment.sun_bow""]","[""ability.sun_arrow""]",talent_board.apollo,"[""perfume.sun_blessing""]"

@@ -1,0 +1,2 @@
+id,name,description,iconKey,tags,extensions,inputs,outputs,durationSeconds,actionPointCost
+recipe.healing_potion,治疗药剂配方,,,[],[],"[{""resourceId"":""material.herb"",""amount"":3},{""resourceId"":""material.water"",""amount"":1}]","[{""resourceId"":""material.healing_potion"",""amount"":1,""probabilityPermille"":1000,""quality"":""normal""}]",30,2

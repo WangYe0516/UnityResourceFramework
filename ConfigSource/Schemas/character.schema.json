@@ -1,0 +1,107 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "baseStats",
+    "defaultEquipmentIds",
+    "defaultAbilityIds",
+    "talentBoardId",
+    "defaultPerfumeIds",
+    "id",
+    "name"
+  ],
+  "properties": {
+    "baseStats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "statId",
+          "value"
+        ],
+        "properties": {
+          "statId": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "minimum": -3.4028235E+38,
+            "maximum": 3.4028235E+38
+          }
+        }
+      }
+    },
+    "defaultEquipmentIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "defaultAbilityIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "talentBoardId": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "defaultPerfumeIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "iconKey": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "extensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "valueType",
+          "value"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "valueType": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "character"
+}

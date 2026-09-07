@@ -1,0 +1,2 @@
+id,name,description,iconKey,tags,extensions,allowedCharacterIds,stackRule,modifiers
+perfume.sun_blessing,日光香氛,,,[],[],"[""character.apollo""]",unique,"[{""targetType"":""ability"",""targetId"":""ability.sun_arrow"",""property"":""cooldownSeconds"",""operation"":""multiply"",""value"":0.9}]"
