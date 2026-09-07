@@ -115,6 +115,7 @@ namespace ResourceFramework
                 {
                     Amount(output.amount, row.id); NonEmpty(output.quality, row.id);
                     Require(output.probabilityPermille == 1000, row.id + ": only fixed craft outputs are implemented");
+                    Require(output.quality == "normal", row.id + ": quality-specific inventories are not implemented; use normal");
                 }
             }
             else if (row is CurrencyData currency)

@@ -76,6 +76,9 @@ namespace ResourceFramework
         {
             JObject obj = ParseObject(json);
             CheckProperties(obj, new[] {"format", "contentVersion", "requiredCapabilities", "modules", "demo"}, "collection");
+            RequireType(obj["format"], JTokenType.String, "format");
+            if ((string)obj["format"] != "reference-module-collection") throw new ConfigException("Unsupported collection format");
+            if (obj["demo"] != null) RequireType(obj["demo"], JTokenType.Object, "demo");
             RequireType(obj["modules"], JTokenType.Array, "modules");
             RequireType(obj["contentVersion"], JTokenType.String, "contentVersion");
             RequireType(obj["requiredCapabilities"], JTokenType.Array, "requiredCapabilities");

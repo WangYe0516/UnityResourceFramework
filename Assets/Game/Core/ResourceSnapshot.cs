@@ -52,6 +52,7 @@ namespace ResourceFramework
         public T[] All<T>() where T : ResourceData
         { return rows.Keys.Where(x => typeof(T).IsAssignableFrom(ConfigCodec.TypeFor(kinds[x]))).OrderBy(x => x, StringComparer.Ordinal).Select(Get<T>).ToArray(); }
         public void EnsureDependencies(string id) { Visit(id, new HashSet<string>(StringComparer.Ordinal)); }
+        public void ValidateAllDependencies() { foreach (string id in rows.Keys) EnsureDependencies(id); }
         private void Visit(string id, HashSet<string> visited)
         {
             if (!visited.Add(id)) return;
@@ -85,10 +86,20 @@ namespace ResourceFramework
     public sealed class ConfigRuntime
     {
         private ResourceSnapshot current;
+        private readonly object sync = new object();
         public ResourceSnapshot Current { get { return Volatile.Read(ref current); } }
         public ConfigRuntime(ResourceSnapshot initial) { current = initial ?? throw new ArgumentNullException(nameof(initial)); }
         public void Replace(ResourceSnapshot candidate)
-        { Interlocked.Exchange(ref current, candidate ?? throw new ArgumentNullException(nameof(candidate))); }
+        {
+            if (candidate == null) throw new ArgumentNullException(nameof(candidate));
+            candidate.ValidateAllDependencies();
+            lock (sync)
+            {
+                foreach (ResourceData existing in Current.All<ResourceData>())
+                    if (!candidate.Contains(existing.id)) throw new ConfigException("Hot reload cannot delete an existing resource without a migration: " + existing.id);
+                Interlocked.Exchange(ref current, candidate);
+            }
+        }
         public bool TryReloadJson(string collectionJson, out string error)
         {
             try

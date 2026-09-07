@@ -1,7 +1,7 @@
 {
   "name": "ResourceFramework.Core",
   "rootNamespace": "ResourceFramework",
-  "references": ["Unity.Newtonsoft.Json"],
+  "references": [],
   "autoReferenced": true,
   "noEngineReferences": true
 }
