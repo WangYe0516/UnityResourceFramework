@@ -1,0 +1,30 @@
+{
+  "module": "equipment",
+  "schemaVersion": 1,
+  "contentVersion": "demo-001",
+  "items": [
+    {
+      "id": "equipment.sun_bow",
+      "name": "日弓",
+      "description": "",
+      "iconKey": "",
+      "tags": [],
+      "extensions": [],
+      "slot": "weapon",
+      "rarity": 3,
+      "allowedCharacterIds": [
+        "character.apollo"
+      ],
+      "grantedAbilityIds": [
+        "ability.sun_arrow"
+      ],
+      "statModifiers": [
+        {
+          "statId": "attack",
+          "operation": "add",
+          "value": 5
+        }
+      ]
+    }
+  ]
+}

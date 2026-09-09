@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb728345867150118c5658f1e5cf6e3f, type: 3}
+  m_Name: gacha
+  m_EditorClassIdentifier: ResourceFramework.Unity::ResourceFramework.ConfigTableAsset
+  module: gacha
+  schemaVersion: 1
+  contentVersion: demo-001
+  canonicalJson: "{\r\n  \"module\": \"gacha\",\r\n  \"schemaVersion\": 1,\r\n  \"contentVersion\": \"demo-001\",\r\n  \"items\": [\r\n    {\r\n      \"id\": \"gacha.standard\",\r\n      \"name\": \"\u5E38\u9A7B\u6C60\",\r\n      \"description\": \"\",\r\n      \"iconKey\": \"\",\r\n      \"tags\": [],\r\n      \"extensions\": [],\r\n      \"drawCosts\": [\r\n        {\r\n          \"resourceId\": \"currency.ticket\",\r\n          \"amount\": 1\r\n        }\r\n      ],\r\n      \"entries\": [\r\n        {\r\n          \"entryId\": \"entry_01\",\r\n          \"resourceId\": \"character.apollo\",\r\n          \"amount\": 1,\r\n          \"weight\": 100,\r\n          \"isPityTarget\": true\r\n        },\r\n        {\r\n          \"entryId\": \"entry_02\",\r\n          \"resourceId\": \"equipment.sun_bow\",\r\n          \"amount\": 1,\r\n          \"weight\": 300,\r\n          \"isPityTarget\": false\r\n        },\r\n        {\r\n          \"entryId\": \"entry_03\",\r\n          \"resourceId\": \"material.herb\",\r\n          \"amount\": 5,\r\n          \"weight\": 600,\r\n          \"isPityTarget\": false\r\n        }\r\n      ],\r\n      \"startsAtUtc\": null,\r\n      \"endsAtUtc\": null,\r\n      \"pity\": {\r\n        \"ruleType\": \"hard_pity\",\r\n        \"guaranteeAt\": 10,\r\n        \"counterKey\": \"gacha.standard\",\r\n        \"resetOnTarget\": true\r\n      }\r\n    }\r\n  ]\r\n}"

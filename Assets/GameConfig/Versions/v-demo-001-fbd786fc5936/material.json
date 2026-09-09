@@ -1,0 +1,52 @@
+{
+  "module": "material",
+  "schemaVersion": 1,
+  "contentVersion": "demo-001",
+  "items": [
+    {
+      "id": "material.herb",
+      "name": "草药",
+      "description": "",
+      "iconKey": "",
+      "tags": [],
+      "extensions": [],
+      "rarity": 1,
+      "sources": [
+        {
+          "sourceType": "plant",
+          "sourceId": "herb_patch"
+        }
+      ]
+    },
+    {
+      "id": "material.water",
+      "name": "水",
+      "description": "",
+      "iconKey": "",
+      "tags": [],
+      "extensions": [],
+      "rarity": 1,
+      "sources": [
+        {
+          "sourceType": "purchase",
+          "sourceId": "water_shop"
+        }
+      ]
+    },
+    {
+      "id": "material.healing_potion",
+      "name": "治疗药剂",
+      "description": "",
+      "iconKey": "",
+      "tags": [],
+      "extensions": [],
+      "rarity": 2,
+      "sources": [
+        {
+          "sourceType": "craft",
+          "sourceId": "recipe.healing_potion"
+        }
+      ]
+    }
+  ]
+}

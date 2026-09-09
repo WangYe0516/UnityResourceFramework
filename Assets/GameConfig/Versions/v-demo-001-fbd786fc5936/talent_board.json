@@ -1,0 +1,31 @@
+{
+  "module": "talent_board",
+  "schemaVersion": 1,
+  "contentVersion": "demo-001",
+  "items": [
+    {
+      "id": "talent_board.apollo",
+      "name": "阿波罗天赋板",
+      "description": "",
+      "iconKey": "",
+      "tags": [],
+      "extensions": [],
+      "ownerCharacterId": "character.apollo",
+      "nodes": [
+        {
+          "nodeId": "node_01",
+          "prerequisiteNodeIds": [],
+          "unlockCosts": [
+            {
+              "resourceId": "currency.gold",
+              "amount": 10
+            }
+          ],
+          "grantedAbilityIds": [
+            "ability.sun_arrow"
+          ]
+        }
+      ]
+    }
+  ]
+}

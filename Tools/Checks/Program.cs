@@ -240,8 +240,10 @@ internal static class Program
             foreach(string meta in Directory.GetFiles(assets,"*.meta",SearchOption.AllDirectories)) {
                 var match=Regex.Match(File.ReadAllText(meta),@"(?m)^guid: ([a-f0-9]{32})"); Assert(match.Success && guids.Add(match.Groups[1].Value),"Duplicate/invalid GUID: "+meta);
             }
+            // Unity's serialized default skybox, lighting and cookie are engine-owned assets.
+            var builtInGuids = new HashSet<string> { "0000000000000000f000000000000000", "0000000000000000e000000000000000" };
             foreach(string path in files.Where(x=>x.EndsWith(".asset",StringComparison.Ordinal)||x.EndsWith(".unity",StringComparison.Ordinal)))
-                foreach(Match match in Regex.Matches(File.ReadAllText(path),@"guid: ([a-f0-9]{32})")) Assert(guids.Contains(match.Groups[1].Value),"Unresolved GUID: "+path);
+                foreach(Match match in Regex.Matches(File.ReadAllText(path),@"guid: ([a-f0-9]{32})")) Assert(guids.Contains(match.Groups[1].Value) || builtInGuids.Contains(match.Groups[1].Value),"Unresolved GUID: "+path);
         });
         Test("nine committed SO payloads match source JSON", () => {
             var expected=ConfigCodec.ParseCollection(json); var modules=new List<ModuleEnvelope>();

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb728345867150118c5658f1e5cf6e3f, type: 3}
+  m_Name: currency
+  m_EditorClassIdentifier: ResourceFramework.Unity::ResourceFramework.ConfigTableAsset
+  module: currency
+  schemaVersion: 1
+  contentVersion: demo-001
+  canonicalJson: "{\r\n  \"module\": \"currency\",\r\n  \"schemaVersion\": 1,\r\n  \"contentVersion\": \"demo-001\",\r\n  \"items\": [\r\n    {\r\n      \"id\": \"currency.gold\",\r\n      \"name\": \"\u91D1\u5E01\",\r\n      \"description\": \"\",\r\n      \"iconKey\": \"\",\r\n      \"tags\": [],\r\n      \"extensions\": [],\r\n      \"acquisitionMethods\": [\r\n        \"quest\",\r\n        \"drop\"\r\n      ],\r\n      \"purchasable\": false,\r\n      \"purchaseCosts\": []\r\n    },\r\n    {\r\n      \"id\": \"currency.ticket\",\r\n      \"name\": \"\u62BD\u5361\u5238\",\r\n      \"description\": \"\",\r\n      \"iconKey\": \"\",\r\n      \"tags\": [],\r\n      \"extensions\": [],\r\n      \"acquisitionMethods\": [\r\n        \"quest\",\r\n        \"purchase\"\r\n      ],\r\n      \"purchasable\": true,\r\n      \"purchaseCosts\": [\r\n        {\r\n          \"resourceId\": \"currency.gold\",\r\n          \"amount\": 100\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}"

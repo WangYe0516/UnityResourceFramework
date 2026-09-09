@@ -27,7 +27,21 @@ namespace ResourceFramework
             }
         }
 
-        private void Start() { if (runOnStart) RunDemo(); }
+        private void Start()
+        {
+            if (!runOnStart) return;
+            bool smokeTest = !Application.isEditor && Array.IndexOf(Environment.GetCommandLineArgs(), "--smoke-test") >= 0;
+            try
+            {
+                RunDemo();
+                if (smokeTest) Application.Quit(0);
+            }
+            catch
+            {
+                if (smokeTest) Application.Quit(1);
+                else throw;
+            }
+        }
 
         [ContextMenu("Run Full Demo")]
         public void RunDemo()

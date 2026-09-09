@@ -1,0 +1,364 @@
+{
+  "format": "reference-module-collection",
+  "contentVersion": "demo-001",
+  "requiredCapabilities": [
+    "ability_descriptors",
+    "perfume_descriptors",
+    "fixed_craft_outputs",
+    "weighted_gacha",
+    "hard_pity"
+  ],
+  "modules": [
+    {
+      "module": "ability",
+      "schemaVersion": 1,
+      "contentVersion": "demo-001",
+      "items": [
+        {
+          "id": "ability.sun_arrow",
+          "name": "日箭",
+          "description": "",
+          "iconKey": "",
+          "tags": [],
+          "extensions": [],
+          "abilityType": "active",
+          "cooldownSeconds": 5,
+          "costs": [],
+          "effects": [
+            {
+              "effectType": "damage_descriptor",
+              "parameters": [
+                {
+                  "key": "coefficient",
+                  "valueType": "float",
+                  "value": "1.5"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "character",
+      "schemaVersion": 1,
+      "contentVersion": "demo-001",
+      "items": [
+        {
+          "id": "character.apollo",
+          "name": "阿波罗",
+          "description": "",
+          "iconKey": "",
+          "tags": [],
+          "extensions": [],
+          "baseStats": [
+            {
+              "statId": "hp",
+              "value": 100
+            },
+            {
+              "statId": "attack",
+              "value": 20
+            }
+          ],
+          "defaultEquipmentIds": [
+            "equipment.sun_bow"
+          ],
+          "defaultAbilityIds": [
+            "ability.sun_arrow"
+          ],
+          "talentBoardId": "talent_board.apollo",
+          "defaultPerfumeIds": [
+            "perfume.sun_blessing"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "currency",
+      "schemaVersion": 1,
+      "contentVersion": "demo-001",
+      "items": [
+        {
+          "id": "currency.gold",
+          "name": "金币",
+          "description": "",
+          "iconKey": "",
+          "tags": [],
+          "extensions": [],
+          "acquisitionMethods": [
+            "quest",
+            "drop"
+          ],
+          "purchasable": false,
+          "purchaseCosts": []
+        },
+        {
+          "id": "currency.ticket",
+          "name": "抽卡券",
+          "description": "",
+          "iconKey": "",
+          "tags": [],
+          "extensions": [],
+          "acquisitionMethods": [
+            "quest",
+            "purchase"
+          ],
+          "purchasable": true,
+          "purchaseCosts": [
+            {
+              "resourceId": "currency.gold",
+              "amount": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "equipment",
+      "schemaVersion": 1,
+      "contentVersion": "demo-001",
+      "items": [
+        {
+          "id": "equipment.sun_bow",
+          "name": "日弓",
+          "description": "",
+          "iconKey": "",
+          "tags": [],
+          "extensions": [],
+          "slot": "weapon",
+          "rarity": 3,
+          "allowedCharacterIds": [
+            "character.apollo"
+          ],
+          "grantedAbilityIds": [
+            "ability.sun_arrow"
+          ],
+          "statModifiers": [
+            {
+              "statId": "attack",
+              "operation": "add",
+              "value": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "gacha",
+      "schemaVersion": 1,
+      "contentVersion": "demo-001",
+      "items": [
+        {
+          "id": "gacha.standard",
+          "name": "常驻池",
+          "description": "",
+          "iconKey": "",
+          "tags": [],
+          "extensions": [],
+          "drawCosts": [
+            {
+              "resourceId": "currency.ticket",
+              "amount": 1
+            }
+          ],
+          "entries": [
+            {
+              "entryId": "entry_01",
+              "resourceId": "character.apollo",
+              "amount": 1,
+              "weight": 100,
+              "isPityTarget": true
+            },
+            {
+              "entryId": "entry_02",
+              "resourceId": "equipment.sun_bow",
+              "amount": 1,
+              "weight": 300,
+              "isPityTarget": false
+            },
+            {
+              "entryId": "entry_03",
+              "resourceId": "material.herb",
+              "amount": 5,
+              "weight": 600,
+              "isPityTarget": false
+            }
+          ],
+          "startsAtUtc": null,
+          "endsAtUtc": null,
+          "pity": {
+            "ruleType": "hard_pity",
+            "guaranteeAt": 10,
+            "counterKey": "gacha.standard",
+            "resetOnTarget": true
+          }
+        }
+      ]
+    },
+    {
+      "module": "material",
+      "schemaVersion": 1,
+      "contentVersion": "demo-001",
+      "items": [
+        {
+          "id": "material.herb",
+          "name": "草药",
+          "description": "",
+          "iconKey": "",
+          "tags": [],
+          "extensions": [],
+          "rarity": 1,
+          "sources": [
+            {
+              "sourceType": "plant",
+              "sourceId": "herb_patch"
+            }
+          ]
+        },
+        {
+          "id": "material.water",
+          "name": "水",
+          "description": "",
+          "iconKey": "",
+          "tags": [],
+          "extensions": [],
+          "rarity": 1,
+          "sources": [
+            {
+              "sourceType": "purchase",
+              "sourceId": "water_shop"
+            }
+          ]
+        },
+        {
+          "id": "material.healing_potion",
+          "name": "治疗药剂",
+          "description": "",
+          "iconKey": "",
+          "tags": [],
+          "extensions": [],
+          "rarity": 2,
+          "sources": [
+            {
+              "sourceType": "craft",
+              "sourceId": "recipe.healing_potion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "perfume",
+      "schemaVersion": 1,
+      "contentVersion": "demo-001",
+      "items": [
+        {
+          "id": "perfume.sun_blessing",
+          "name": "日光香氛",
+          "description": "",
+          "iconKey": "",
+          "tags": [],
+          "extensions": [],
+          "allowedCharacterIds": [
+            "character.apollo"
+          ],
+          "stackRule": "unique",
+          "modifiers": [
+            {
+              "targetType": "ability",
+              "targetId": "ability.sun_arrow",
+              "property": "cooldownSeconds",
+              "operation": "multiply",
+              "value": 0.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "recipe",
+      "schemaVersion": 1,
+      "contentVersion": "demo-001",
+      "items": [
+        {
+          "id": "recipe.healing_potion",
+          "name": "治疗药剂配方",
+          "description": "",
+          "iconKey": "",
+          "tags": [],
+          "extensions": [],
+          "inputs": [
+            {
+              "resourceId": "material.herb",
+              "amount": 3
+            },
+            {
+              "resourceId": "material.water",
+              "amount": 1
+            }
+          ],
+          "outputs": [
+            {
+              "resourceId": "material.healing_potion",
+              "amount": 1,
+              "probabilityPermille": 1000,
+              "quality": "normal"
+            }
+          ],
+          "durationSeconds": 30,
+          "actionPointCost": 2
+        }
+      ]
+    },
+    {
+      "module": "talent_board",
+      "schemaVersion": 1,
+      "contentVersion": "demo-001",
+      "items": [
+        {
+          "id": "talent_board.apollo",
+          "name": "阿波罗天赋板",
+          "description": "",
+          "iconKey": "",
+          "tags": [],
+          "extensions": [],
+          "ownerCharacterId": "character.apollo",
+          "nodes": [
+            {
+              "nodeId": "node_01",
+              "prerequisiteNodeIds": [],
+              "unlockCosts": [
+                {
+                  "resourceId": "currency.gold",
+                  "amount": 10
+                }
+              ],
+              "grantedAbilityIds": [
+                "ability.sun_arrow"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "demo": {
+    "initialBalances": {
+      "material.herb": 10,
+      "material.water": 5,
+      "material.healing_potion": 0,
+      "currency.ticket": 2,
+      "currency.gold": 0
+    },
+    "initialActionPoints": 10,
+    "characterId": "character.apollo",
+    "poolId": "gacha.standard",
+    "recipeId": "recipe.healing_potion",
+    "randomRoll": 500,
+    "advanceSeconds": [
+      29,
+      1
+    ]
+  }
+}

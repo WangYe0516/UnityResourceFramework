@@ -189,7 +189,12 @@ namespace ResourceFramework
                 throw new InvalidOperationException("Exit Play mode before creating the Demo scene.");
             EnsureFolder("Assets/Scenes");
             Scene previous = SceneManager.GetActiveScene();
-            Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+            bool replaceEmptyScene = SceneManager.sceneCount == 1 && string.IsNullOrEmpty(previous.path) && !previous.isDirty;
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+                if (!replaceEmptyScene && string.IsNullOrEmpty(SceneManager.GetSceneAt(i).path))
+                    throw new InvalidOperationException("Save untitled scenes before creating the Demo; unsaved work is preserved.");
+            Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,
+                replaceEmptyScene ? NewSceneMode.Single : NewSceneMode.Additive);
             try
             {
                 SceneManager.SetActiveScene(scene);
@@ -206,7 +211,7 @@ namespace ResourceFramework
             }
             finally
             {
-                EditorSceneManager.CloseScene(scene, true);
+                if (!replaceEmptyScene) EditorSceneManager.CloseScene(scene, true);
                 if (previous.IsValid() && previous.isLoaded) SceneManager.SetActiveScene(previous);
             }
             var scenes = EditorBuildSettings.scenes.ToList();
