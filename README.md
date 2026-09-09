@@ -2,9 +2,9 @@
 
 工程包含九类配置、完整 CSV/JSON 导入工具、ScriptableObject 资产、角色构建、抽卡、定时合成、数据热更新及 Console 示例场景。所有源文件和真实提交历史保存在 [WangYe0516/UnityResourceFramework](https://github.com/WangYe0516/UnityResourceFramework)。
 
-**当前验证状态：47 项命令行检查通过，实际编译了 Core、Features 和 CSV 导入器的 C# 源码，语言限制为 C# 7.3。当前机器未找到 Unity 编辑器，因此 Unity 资产导入、Play Mode、真实 Editor 批处理与 Player 构建尚未执行。静态生成的初始场景和 SO 已检查 GUID 引用与配置内容，不能等同于 Unity 实机验收。**
+**2026-09-10 验证通过：47 项 C# 检查、Unity 全部程序集编译、真实 CSV→JSON/SO 导入、DemoScene Play Mode、Windows x64 Player 构建及启动运行。Editor 和 Player 均输出预期最终余额。**逐项覆盖见 [原题交付对照](Docs/REQUIREMENTS.md)，实际结果见 [验证记录](Docs/VALIDATION.md)。
 
-目标编辑器固定为 **Unity 2022.3.62f1**，这是本示例的兼容目标，不是“当前最新版本”声明。Unity 包固定 `com.unity.nuget.newtonsoft-json: 3.2.1`；该包提供自动引用的预编译 DLL，没有名为 `Unity.Newtonsoft.Json` 的 asmdef。首次打开需允许 Unity 下载该包。命令行测试使用 .NET 8 SDK 和 NuGet Newtonsoft.Json 13.0.3，具体边界见 [验证记录](Docs/VALIDATION.md)。
+工程已使用本机实际安装的 **Unity 6000.6.0f1** 导入并验证。Unity 自动升级后的 Newtonsoft 包为 **3.2.2**，依赖锁文件已提交；该包提供自动引用的预编译 DLL。首次打开需允许下载依赖。命令行测试使用 .NET 8 SDK 和 NuGet Newtonsoft.Json 13.0.3。旧提交的 2022.3 兼容目标未实测，本交付以实际验证版本为准。
 
 ## 1. 如何运行
 
@@ -29,7 +29,7 @@ SO → Runtime，加载 9 类模块、12 条资源。
 预期最终：herb=9, water=3, potion=3, ticket=1, actionPoints=6。
 ```
 
-这是场景预期输出，**不是已经执行的 Unity 日志**。示例玩家状态由 Demo 初始化；框架的配方、消耗、掉落和挂载来自配置。改变示例配方/卡池后，Demo 中针对原样例的断言也要相应调整；业务服务不依赖这些样例 ID。
+上述结果已在真实 Editor Play Mode 和 Windows Player 执行，日志摘录见验证记录。示例玩家状态由 Demo 初始化；框架的配方、消耗、掉落和挂载来自配置。改变示例配方/卡池后，Demo 中针对原样例的断言也要相应调整；业务服务不依赖这些样例 ID。
 
 ### 不依赖 Unity 的真实 C# 检查
 
@@ -49,10 +49,18 @@ dotnet run --project .\Tools\Checks\Framework.Checks.csproj -- .
 
 ### 一条命令做真实 Unity 验收
 
+关闭已打开的同一项目后，在项目根目录执行以下脚本。它按顺序执行导入、真实 Play Mode、Windows 构建和 Player 自动运行，同时检查退出码与成功标记。需有效 Unity 许可和 Windows Build Support，日志保存在 `Logs/Verification`：
+
+```powershell
+.\Tools\verify-unity.ps1 -UnityEditor 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Unity.exe'
+```
+
+可加 `-Mode Import`、`-Mode PlayMode` 或 `-Mode Player` 单独验收。以下是直接入口：
+
 在已安装且授权的 Unity 编辑器环境中执行；`$unityEditor` 改为实际路径：
 
 ```powershell
-$unityEditor = 'C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Unity.exe'
+$unityEditor = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Unity.exe'
 $projectRoot = (Get-Location).Path
 & $unityEditor -batchmode -nographics -quit -projectPath $projectRoot `
   -executeMethod ResourceFramework.ConfigImportMenu.BatchValidateAndRunDemo `
@@ -69,7 +77,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Unity validation failed; inspect unity-validat
 if ($LASTEXITCODE -ne 0) { throw 'Unity build failed; inspect unity-build.log' }
 ```
 
-输出路径是 `Builds/Windows/ResourceFrameworkDemo.exe`。这些 Unity 命令已提供但本次未执行。
+输出路径是 `Builds/Windows/ResourceFrameworkDemo.exe`，上述入口均已执行。Player 不含 UI，正常启动显示空背景，结果写入 Unity Player 日志；自动验收增加 `-batchmode -nographics --smoke-test -logFile <日志路径>`，完成后以 0/1 退出。
 
 ## 2. 框架架构
 
@@ -212,7 +220,7 @@ dotnet run --project .\Tools\Checks\Framework.Checks.csproj -- . --export-schema
 
 - 玩家状态、任务和幂等回执仅在内存中，关闭后不保留；不宣称支持崩溃恢复或跨服务器事务。
 - 随机序列不属于玩家事务；失败交易不扣钱，但已使用的随机数可能推进。成功重试不会重抽。固定种子是本地演示能力，不是可信付费抽卡服务。
-- 尚未执行 Unity 编辑器/Player 验证；初始 `.asset/.unity` 以 Unity 文本格式生成，已做内容与 GUID 检查，提供 Editor 菜单重新生成及真实批处理验收入口。
+- 已执行 Unity 6000.6.0f1 Editor/Play Mode/Windows x64 Mono Player 验证；当前 Active 指向 Unity 生成的版本资产，DemoScene 已由 Editor 保存。未验证 IL2CPP、其他平台或旧编辑器。
 - 没有参考 Excel 原件，因此示例为自拟数据。
 - SO 的 canonical JSON 可扩展且容易检查，但不是面向超大规模数据的零分配数据库。
 
